@@ -19,13 +19,13 @@ The code for this sample is found the following git branches:
 
 * *basics.step-1* -- This branch shows you how to set up your project to use the OpenTok iOS SDK.
 
-* *basics.step-4* -- This branch shows you how to connect to the OpenTok session.
+* *basics.step-3* -- This branch shows you how to connect to the OpenTok session.
 
-* *basics.step-5* -- This branch shows you how publish a stream to the OpenTok session.
+* *basics.step-4* -- This branch shows you how publish a stream to the OpenTok session.
 
-* *basics.step-6* -- This branch shows you how to subscribe to a stream on the OpenTok session.
+* *basics.step-5* -- This branch shows you how to subscribe to a stream on the OpenTok session.
 
-* *basics.step-7* -- This branch shows you how to add user interface controls to mute the
+* *basics.step-6* -- This branch shows you how to add user interface controls to mute the
   publisher and subscriber audio and to swap the camera used by the publisher.
 
 * *archiving* -- This branch shows you how to record the session.
@@ -47,81 +47,25 @@ The code for this sample is found the following git branches:
 * *screen-sharing* - This branch shows you how to use the device's screen (instead of a
   camera) as the video source for a published stream.
 
-You will also need to clone the learning-opentok-php repo and run its code on a
-PHP-enabled web server. See the basics.step-2 section for more information.
-
 ## basics.step-1: Starting Point
 
 The step-0 branch includes a basic Xcode project.  Before you can test the application,
 you need to make some settings in Xcode and set up a web service to handle some
 OpenTok-related API calls.
 
-1. Download the [OpenTok iOS SDK] [1].
+1. We use CocoaPods to install the SDK, in case you don't have it installed, please follow [this guide] [1].
 
-2. Locate the LearningOpenTok.xcodeproj file and open it in Xcode.
+2. Install OpenTok SDK by executing `pod install` in the root folder of this sample.
 
-3. Include the OpenTok.framework in the list of frameworks used by the app.
-   From the OpenTok iOS SDK, you can drag the OpenTok.framework file into the list of
-   frameworks in the Xcode project explorer for the app.
+3. Locate the LearningOpenTok.xcworkspace file and open it in Xcode.
 
-4. Copy the SampleConfig.h file to a Config.h file.
+## basics.step-2: Obtaining keys to connect to a session
 
-   Copy the contents of the SampleConfig.h file to the clipboard. Then select
-   File > New > File (Command-N). In the dialog that is displayed, select
-   Header File, click Next, and save the file as Config.h.
-
-  We will set values for the constants defined in this file in a later step.
-
-## basics.step-2 (server-side): Creating a session and defining archive REST API calls
-
-Before you can test the application, you need to set up a web service to handle some
-OpenTok-related API calls. The web service securely creates an OpenTok session.
-
-The [Learning OpenTok PHP](https://github.com/opentok/learning-opentok-php) repo includes code
-for setting up a web service that handles the following API calls:
-
-* "/service" -- The iOS client calls this endpoint to get an OpenTok session ID, token,
-  and API key.
-
-* "/start" -- The iOS client calls this endpoint to start recording the OpenTok session to
-  an archive.
-
-* "/stop" -- The iOS client calls this endpoint to stop recording the archive.
-
-* "/view" -- The iOS client load this endpoint in a web browser to display the archive
-  recording.
-
-The HTTP POST request to the /session endpoint returns a response that includes the OpenTok
-session ID and token.
-
-Download the repo and run its code on a PHP-enabled web server. You can also deploy and
-run the code on Heroku (so you don't have to set up your own PHP server). See the readme
-file in the learning-opentok-php repo for instructions.
-
-
-## basics.step-3 (server-side): Generating a token (server side)
-
-The web service also creates a token that the client uses to connect to the OpenTok session.
-The HTTP GET request to the /service endpoint returns a response that includes the OpenTok
-session ID and token.
-
-You will want to authenticate each user (using your own server-side authentication techniques)
-before sending an OpenTok token. Otherwise, malicious users could call your web service and
-use tokens, causing streaming minutes to be charged to your OpenTok developer account. Also,
-it is a best practice to use an HTTPS URL for the web service that returns an OpenTok token,
-so that it cannot be intercepted and misused.
-
+// Describe how to obtain an API Key, Session ID and Token
 
 ## basics.step-4: Connecting to the session
 
 The code for this section is added in the basics.step-4 branch of the repo.
-
-First, set the app to use the web service described in the previous two sections:
-
-* In Xcode, open the Config.h file (see basics.step-1). Add the base URL,
-  (such as `@"http://example.com"`) in this line:
-
-      define SAMPLE_SERVER_BASE_URL @"https://YOUR-SERVER-URL"
 
 In a production application, you will always want to use a web service to obtain a unique token
 each time a user connects to an OpenTok session.
@@ -162,21 +106,15 @@ information about tokens, see the OpenTok [Token creation overview] [5].
 
 **API key** -- The API key identifies your OpenTok developer account.
 
-Upon starting up, the application calls the `[self getSessionCredentials:]` method (defined in the
-ViewController.m file). This method calls a web service that provides an OpenTok session ID, API key, and token to be used by the client. In the Config.h file (see the previous section), set the
-`SAMPLE_SERVER_BASE_URL` constant to the base URL of the web service that handles OpenTok-related
-API calls:
+Since this is a sample App, we are embedding the session credentials in the app code. Please note that,
+due to security concerns, this is **highly unadvisable** in production environments where you should
+obtain them from a server-side component.
 
-    define SAMPLE_SERVER_BASE_URL @"http://YOUR-SERVER-URL/"
+You can find those values in the file Config.h
 
-The "/session" endpoint of the web service returns an HTTP response that includes the session ID,
-the token, and API key formatted as JSON data:
-
-    {
-      "sessionId": "2_MX40NDQ0MzEyMn5-fn4",
-      "apiKey": "12345",
-      "token": "T1==cGFydG5lcl9pZD00jg="
-    }
+    define kSessionId "THE_SESSION_ID"
+    define kToken "THE_TOKEN"
+    define kApiKey "THE_API_KEY"
 
 Upon obtaining the session ID, token, and API, the app calls the `[self doConnect]` method to
 initialize an OTSession object and connect to the OpenTok session:
@@ -637,7 +575,7 @@ of the OTAudioFormat class, and sets the sample rate and number of channels for 
                 _otAudioFormat.sampleRate = kSampleRate;
                 _otAudioFormat.numChannels = 1;
             }
-            
+
             // ...
         }
         return self;
@@ -751,7 +689,7 @@ audio to be published. The OTKBasicAudioDevice implementation of this method cal
           ^{
             [self produceSampleCapture];
         });
-        
+
         return YES;
     }
 
@@ -763,16 +701,16 @@ Then if a capture is still in progress (if the app is publishing), the method ca
     {
         static int num_frames = 1000;
         int16_t *buffer = malloc(sizeof(int16_t) * num_frames);
-    
+
         for (int frame = 0; frame < num_frames; ++frame) {
             Float32 sample = ((double)arc4random() / 0x100000000);
             buffer[frame] = (sample * 32767.0f);
         }
-    
+
         [self.otAudioBus writeCaptureData:buffer numberOfSamples:num_frames];
-    
+
         free(buffer);
-    
+
         if (self.isDeviceCapturing) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
               (int64_t)(0.1 * NSEC_PER_SEC)),
@@ -806,7 +744,7 @@ of the OTPublisher object is set to an instance of OTKBasicVideoRender:
     _publisher = [[OTPublisher alloc]
                   initWithDelegate:self];
     _renderer = [[OTKBasicVideoRender alloc] init];
-    
+
     _publisher.videoRender = _renderer;
 
 OTKBasicVideoRender is a custom class that implements the OTVideoRender protocol (defined
@@ -958,7 +896,7 @@ is called on a background queue after a set interval:
                        ^{
                            [self produceFrame];
                        });
-        
+
         return 0;
     }
 
@@ -969,7 +907,7 @@ the defined height and width for the sample video format:
     - (void)produceFrame
     {
          OTVideoFrame *frame = [[OTVideoFrame alloc] initWithFormat:self.format];
-    
+
         // Generate a image with random pixels
         u_int8_t *imageData[1];
         imageData[0] = malloc(sizeof(uint8_t) * kImageHeight * kImageWidth * 4);
@@ -979,12 +917,12 @@ the defined height and width for the sample video format:
             imageData[0][i+2] = rand() % 255; // G
             imageData[0][i+3] = rand() % 255; // B
         }
-    
+
         [frame setPlanesWithPointers:imageData numPlanes:1];
         [self.consumer consumeFrame:frame];
-    
+
         free(imageData[0]);
-    
+
         if (self.captureStarted) {
             dispatch_after(kTimerInterval,
                            dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
@@ -1324,7 +1262,7 @@ The frame is tagged with a timestamp and capture rate in frames per second and d
     frame.format.estimatedFramesPerSecond = kFramesPerSecond;
     frame.format.estimatedCaptureDelay = 100;
 
-The number of bytes in a single row is multiplied with the height of the image to obtain the size of the image. Note, the single element array and bytes per row are based on a 4-byte, single plane specification of an RGB image. 
+The number of bytes in a single row is multiplied with the height of the image to obtain the size of the image. Note, the single element array and bytes per row are based on a 4-byte, single plane specification of an RGB image.
 
     frame.format.imageWidth = CVPixelBufferGetWidth(pixelBuffer);
     frame.format.imageHeight = CVPixelBufferGetHeight(pixelBuffer);
@@ -1392,7 +1330,7 @@ See the following:
 * [Sample code] [9] (Also included in the OpenTok iOS SDK download) -- Includes sample apps
   that show more features of the OpenTok iOS SDK
 
-[1]: https://tokbox.com/opentok/libraries/client/ios/
+[1]: https://guides.cocoapods.org/using/getting-started.html
 [2]: https://dashboard.tokbox.com
 [3]: https://tokbox.com/opentok/starter-kits/
 [4]: https://tokbox.com/opentok/tutorials/create-session/#media-mode
