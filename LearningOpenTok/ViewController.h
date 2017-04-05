@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <OpenTok/OpenTok.h>
-#import "SampleConfig.h"
+#import "Config.h"
 
 @interface ViewController : UIViewController
 
