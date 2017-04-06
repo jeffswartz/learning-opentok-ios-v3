@@ -21,9 +21,6 @@
     OTPublisher* _publisher;
     OTSubscriber* _subscriber;
     NSString* _archiveId;
-    NSString* _apiKey;
-    NSString* _sessionId;
-    NSString* _token;
 }
 
 #pragma mark - View lifecycle
@@ -31,34 +28,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self getSessionCredentials];
-}
-
-- (void)getSessionCredentials
-{
-    NSString* urlPath = SAMPLE_SERVER_BASE_URL;
-    urlPath = [urlPath stringByAppendingString:@"/session"];
-    NSURL *url = [NSURL URLWithString: urlPath];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10];
-    [request setHTTPMethod: @"GET"];
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
-        if (error){
-            NSLog(@"Error,%@, URL: %@", [error localizedDescription],urlPath);
-        }
-        else{
-            NSDictionary *roomInfo = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-            _apiKey = [roomInfo objectForKey:@"apiKey"];
-            _token = [roomInfo objectForKey:@"token"];
-            _sessionId = [roomInfo objectForKey:@"sessionId"];
-            
-            if(!_apiKey || !_token || !_sessionId) {
-                NSLog(@"Error invalid response from server, URL: %@",urlPath);
-            } else {
-                [self doConnect];
-            }
-        }
-    }];
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -83,11 +52,11 @@
 - (void)doConnect
 {
     // Initialize a new instance of OTSession and begin the connection process.
-    _session = [[OTSession alloc] initWithApiKey:_apiKey
-                                       sessionId:_sessionId
+    _session = [[OTSession alloc] initWithApiKey:kApiKey
+                                       sessionId:kSessionId
                                         delegate:self];
     OTError *error = nil;
-    [_session connectWithToken:_token error:&error];
+    [_session connectWithToken:kToken error:&error];
     if (error)
     {
         NSLog(@"Unable to connect to session (%@)",
