@@ -37,6 +37,7 @@
 		1FB7CCF91AE1F850001F0D1A /* Subscriber-Speaker-Mute-35.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FB7CCF11AE1F850001F0D1A /* Subscriber-Speaker-Mute-35.png */; };
 		1FB7CCFA1AE1F850001F0D1A /* Subscriber-Speaker-Mute-35@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FB7CCF21AE1F850001F0D1A /* Subscriber-Speaker-Mute-35@2x.png */; };
 		1FB7CD081AE5C1A2001F0D1A /* OTKBasicVideoCapturer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FB7CD071AE5C1A2001F0D1A /* OTKBasicVideoCapturer.m */; };
+		A0C9D5F51E980DA100598183 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = A0C9D5F41E980DA100598183 /* Podfile */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		1FB7CCF21AE1F850001F0D1A /* Subscriber-Speaker-Mute-35@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Subscriber-Speaker-Mute-35@2x.png"; sourceTree = "<group>"; };
 		1FB7CD061AE5C1A2001F0D1A /* OTKBasicVideoCapturer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTKBasicVideoCapturer.h; sourceTree = "<group>"; };
 		1FB7CD071AE5C1A2001F0D1A /* OTKBasicVideoCapturer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTKBasicVideoCapturer.m; sourceTree = "<group>"; };
+		A0C9D5F41E980DA100598183 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 		1F3FEE571AE19ECA002E2CF8 = {
 			isa = PBXGroup;
 			children = (
+				A0C9D5F41E980DA100598183 /* Podfile */,
 				1F3FEE621AE19ECA002E2CF8 /* LearningOpenTok */,
 				1F1C01051AE1E399005B4396 /* Frameworks */,
 				1F3FEE611AE19ECA002E2CF8 /* Products */,
@@ -241,6 +244,7 @@
 				1FB7CCF81AE1F850001F0D1A /* Subscriber-Speaker-35@2x.png in Resources */,
 				1FB7CCF91AE1F850001F0D1A /* Subscriber-Speaker-Mute-35.png in Resources */,
 				1F3FEE741AE19ECA002E2CF8 /* LaunchScreen.xib in Resources */,
+				A0C9D5F51E980DA100598183 /* Podfile in Resources */,
 				1FB7CCF51AE1F850001F0D1A /* mic_muted-24.png in Resources */,
 				1FB7CCF71AE1F850001F0D1A /* Subscriber-Speaker-35.png in Resources */,
 				1FB7CCFA1AE1F850001F0D1A /* Subscriber-Speaker-Mute-35@2x.png in Resources */,
