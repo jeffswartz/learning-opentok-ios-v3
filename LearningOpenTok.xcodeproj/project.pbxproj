@@ -37,6 +37,7 @@
 		1FB7CCF91AE1F850001F0D1A /* Subscriber-Speaker-Mute-35.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FB7CCF11AE1F850001F0D1A /* Subscriber-Speaker-Mute-35.png */; };
 		1FB7CCFA1AE1F850001F0D1A /* Subscriber-Speaker-Mute-35@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FB7CCF21AE1F850001F0D1A /* Subscriber-Speaker-Mute-35@2x.png */; };
 		1FB7CCFC1AE57700001F0D1A /* archiving_on-10.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FB7CCFB1AE57700001F0D1A /* archiving_on-10.png */; };
+		A0354ED01E980FB000073911 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = A0354ECF1E980FB000073911 /* Podfile */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		1FB7CCF11AE1F850001F0D1A /* Subscriber-Speaker-Mute-35.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Subscriber-Speaker-Mute-35.png"; sourceTree = "<group>"; };
 		1FB7CCF21AE1F850001F0D1A /* Subscriber-Speaker-Mute-35@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Subscriber-Speaker-Mute-35@2x.png"; sourceTree = "<group>"; };
 		1FB7CCFB1AE57700001F0D1A /* archiving_on-10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_on-10.png"; sourceTree = "<group>"; };
+		A0354ECF1E980FB000073911 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 		1F3FEE571AE19ECA002E2CF8 = {
 			isa = PBXGroup;
 			children = (
+				A0354ECF1E980FB000073911 /* Podfile */,
 				1F3FEE621AE19ECA002E2CF8 /* LearningOpenTok */,
 				1F1C01051AE1E399005B4396 /* Frameworks */,
 				1F3FEE611AE19ECA002E2CF8 /* Products */,
@@ -242,6 +245,7 @@
 				1FB7CCF51AE1F850001F0D1A /* mic_muted-24.png in Resources */,
 				1FB7CCFC1AE57700001F0D1A /* archiving_on-10.png in Resources */,
 				1FB7CCF71AE1F850001F0D1A /* Subscriber-Speaker-35.png in Resources */,
+				A0354ED01E980FB000073911 /* Podfile in Resources */,
 				1FB7CCFA1AE1F850001F0D1A /* Subscriber-Speaker-Mute-35@2x.png in Resources */,
 				1F3FEE711AE19ECA002E2CF8 /* Images.xcassets in Resources */,
 				1FB7CCF41AE1F850001F0D1A /* camera-switch_black-33.png in Resources */,
