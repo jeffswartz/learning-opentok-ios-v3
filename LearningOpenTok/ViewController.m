@@ -101,8 +101,8 @@
 
 - (void)doPublish
 {
-    OTPublisherSettings *setting = [[OTPublisherSettings alloc] init];
-    _publisher = [[OTPublisher alloc] initWithDelegate:self settings:setting];
+    OTPublisherSettings *settings = [[OTPublisherSettings alloc] init];
+    _publisher = [[OTPublisher alloc] initWithDelegate:self settings:settings];
     
     OTError *error = nil;
     [_session publish:_publisher error:&error];
